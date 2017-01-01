@@ -27,6 +27,12 @@ public class MainActivity extends AppCompatActivity {
         scheduleNotification(getNotification("WAKE UP!!!!"), OFFSET, TIME);
     }
 
+    @OnClick(R.id.btnStopAlarm)
+    public void stopAlarm() {
+        AlarmRingtoneManager alarmRingtoneManager = AlarmRingtoneManager.getInstance(getApplicationContext());
+        alarmRingtoneManager.stopAlarm();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         Intent notificationIntent = new Intent(this, AlarmPlaySoundPublisher.class);
         notificationIntent.putExtra(AlarmNotificationPublisher.NOTIFICATION_ID, 1);
         notificationIntent.putExtra(AlarmNotificationPublisher.NOTIFICATION, notification);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         long futureInMillis = SystemClock.elapsedRealtime() + delay + time;
         AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
