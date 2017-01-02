@@ -27,12 +27,6 @@ public class MainActivity extends AppCompatActivity {
         scheduleNotification(getNotification("WAKE UP!!!!"), OFFSET, TIME);
     }
 
-    @OnClick(R.id.btnStopAlarm)
-    public void stopAlarm() {
-        AlarmRingtoneManager alarmRingtoneManager = AlarmRingtoneManager.getInstance(getApplicationContext());
-        alarmRingtoneManager.stopAlarm();
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         long futureInMillis = SystemClock.elapsedRealtime() + delay + time;
         AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
+
+        Toast.makeText(this, R.string.toast_alarm_set, Toast.LENGTH_LONG).show();
     }
 
     private Notification getNotification(String content) {

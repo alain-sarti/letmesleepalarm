@@ -14,5 +14,9 @@ public class AlarmPlaySoundPublisher extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         AlarmRingtoneManager alarmRingtoneManager = AlarmRingtoneManager.getInstance(context);
         alarmRingtoneManager.playAlarm();
+
+        Intent intent1 = new Intent(context, StopActivity.class);
+        intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent1);
     }
 }
