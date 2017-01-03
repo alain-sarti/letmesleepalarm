@@ -6,9 +6,12 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
+import android.support.v4.text.TextUtilsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import butterknife.BindView;
@@ -19,12 +22,26 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.btnAddAlarm)
     Button btnAddAlarm;
 
-    private static long OFFSET = 1000 * 30; // 1000 * 60 * 15
-    private static long TIME = 1000 * 30; // 1000 * 60 * 60 * 8
+    @BindView(R.id.etHours)
+    EditText etHours;
+
+    @BindView(R.id.etOffset)
+    EditText etOffset;
+
+    private static long OFFSET = 1000 * 60 * 15;
+    private static long TIME = 1000 * 60 * 60 * 8;
 
     @OnClick(R.id.btnAddAlarm)
     public void addAlarm() {
-        scheduleNotification(getNotification("WAKE UP!!!!"), OFFSET, TIME);
+        long time = TIME;
+        long offset = OFFSET;
+        if(!TextUtils.isEmpty(etHours.getText().toString())) {
+            time = Long.parseLong(etHours.getText().toString()) * 1000 * 60 * 60;
+        }
+        if(!TextUtils.isEmpty(etOffset.getText().toString())) {
+            offset = Long.parseLong(etOffset.getText().toString()) * 1000 * 60;
+        }
+        scheduleNotification(getNotification("WAKE UP!!!!"), offset, time);
     }
 
     @Override

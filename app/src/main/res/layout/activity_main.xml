@@ -11,6 +11,30 @@
     android:orientation="vertical"
     tools:context="de.technophilia.letmesleepalarm.MainActivity">
 
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/etHours"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="@string/hint_hours"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/etOffset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="@string/hint_offset"
+            />
+    </android.support.design.widget.TextInputLayout>
+
     <Button
         android:id="@+id/btnAddAlarm"
         android:layout_width="match_parent"

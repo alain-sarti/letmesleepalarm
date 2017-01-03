@@ -13,6 +13,8 @@ public class StopActivity extends AppCompatActivity {
     public void stopAlarm() {
         AlarmRingtoneManager alarmRingtoneManager = AlarmRingtoneManager.getInstance(getApplicationContext());
         alarmRingtoneManager.stopAlarm();
+
+        this.finish();
     }
 
     @Override
