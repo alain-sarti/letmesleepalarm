@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Let Me sleep Alarm</string>
+    <string name="btn_add_alarm">Alarm anlegen</string>
+    <string name="btn_stop_alarm">Alarm stoppen</string>
+    <string name="hint_hours">Stunden schlafen (8 ist der Standard)</string>
+    <string name="hint_offset">Minuten bis man einschläft (15 ist der Standard)</string>
+    <string name="toast_alarm_set">Der Wecker ist gestellt, gute Nacht und schlaf gut!</string>
+</resources>
