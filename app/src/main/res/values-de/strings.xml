@@ -6,4 +6,5 @@
     <string name="hint_hours">Stunden schlafen (8 ist der Standard)</string>
     <string name="hint_offset">Minuten bis man einschläft (15 ist der Standard)</string>
     <string name="toast_alarm_set">Der Wecker ist gestellt, gute Nacht und schlaf gut!</string>
+    <string name="notification_alarm_time">Geplanter Alarm um: %s. Klicke auf die Erinnerung, um den Alarm zu löschen.</string>
 </resources>
