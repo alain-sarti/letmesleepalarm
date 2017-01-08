@@ -7,7 +7,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
-import android.support.v4.text.TextUtilsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -40,10 +39,10 @@ public class MainActivity extends AppCompatActivity {
         long time = TIME;
         long offset = OFFSET;
         if(!TextUtils.isEmpty(etHours.getText().toString())) {
-            time = Long.parseLong(etHours.getText().toString()) * 1000 * 60 * 60;
+            time = Long.parseLong(etHours.getText().toString()) * 1000 * 60 * 60; //1000 * 60 * 60
         }
         if(!TextUtils.isEmpty(etOffset.getText().toString())) {
-            offset = Long.parseLong(etOffset.getText().toString()) * 1000 * 60;
+            offset = Long.parseLong(etOffset.getText().toString()) * 1000 * 60; //1000 * 60
         }
         scheduleNotification(offset, time);
     }
@@ -56,16 +55,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void scheduleNotification(long delay, long time) {
-        Intent notificationIntent = new Intent(this, AlarmPlaySoundPublisher.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        Intent alarmIntent = new Intent(this, AlarmPlaySoundPublisher.class);
+        Intent notificationIntent = new Intent(this, AlarmNotificationReceiver.class);
+        PendingIntent alarmPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), Settings.ALARM_ID, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent notificationPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         long futureInMillis = SystemClock.elapsedRealtime() + delay + time;
         AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
+        alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, alarmPendingIntent);
 
-        Notification notification = getNotification(String.format(getString(R.string.notification_alarm_time), DateFormat.format("hh:mm", new Date(futureInMillis))), pendingIntent);
+        Notification notification = getNotification(String.format(getString(R.string.notification_alarm_time), DateFormat.format("hh:mm", new Date(futureInMillis))), notificationPendingIntent);
         NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(1, notification);
+        notificationManager.notify(Settings.NOTIFICATION_ID, notification);
 
         Toast.makeText(this, R.string.toast_alarm_set, Toast.LENGTH_LONG).show();
     }
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     private Notification getNotification(String content, PendingIntent pendingIntent) {
         Notification.Builder builder = new Notification.Builder(this);
         builder.setContentTitle("Let Me Sleep Notification");
-//        builder.setContentIntent(pendingIntent);
+        builder.setContentIntent(pendingIntent);
         builder.setContentText(content);
         builder.setSmallIcon(R.mipmap.ic_launcher);
         return builder.build();
