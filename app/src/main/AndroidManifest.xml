@@ -21,7 +21,7 @@
         <receiver android:name=".AlarmPlaySoundPublisher" />
 
         <activity android:name=".StopActivity"
-            android:showOnLockScreen="true"></activity>
+            android:showOnLockScreen="true"/>
     </application>
 
 </manifest>
