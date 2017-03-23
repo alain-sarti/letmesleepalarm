@@ -55,16 +55,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void scheduleNotification(long delay, long time) {
-        Intent alarmIntent = new Intent(this, AlarmPlaySoundPublisher.class);
-        Intent notificationIntent = new Intent(this, AlarmNotificationReceiver.class);
-        PendingIntent alarmPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), Settings.ALARM_ID, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        PendingIntent notificationPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent notificationPendingIntent = prepareAlarmIntent(delay, time);
 
-        long futureInMillis = SystemClock.elapsedRealtime() + delay + time;
-        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, alarmPendingIntent);
-
-        Notification notification = getNotification(String.format(getString(R.string.notification_alarm_time), DateFormat.format("hh:mm", new Date(futureInMillis))), notificationPendingIntent);
+        Notification notification = getNotification(String.format(getString(R.string.notification_alarm_time), DateFormat.format("hh:mm", getAlarmTime(delay, time))), notificationPendingIntent);
         NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(Settings.NOTIFICATION_ID, notification);
 
@@ -78,5 +71,22 @@ public class MainActivity extends AppCompatActivity {
         builder.setContentText(content);
         builder.setSmallIcon(R.mipmap.ic_launcher);
         return builder.build();
+    }
+
+    private Date getAlarmTime(long delay, long time) {
+        return new Date(System.currentTimeMillis() + delay + time);
+    }
+
+    private PendingIntent prepareAlarmIntent(long delay, long time) {
+        Intent alarmIntent = new Intent(this, AlarmPlaySoundPublisher.class);
+        Intent notificationIntent = new Intent(this, AlarmNotificationReceiver.class);
+        PendingIntent alarmPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), Settings.ALARM_ID, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent notificationPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        long futureInMillis = SystemClock.elapsedRealtime() + delay + time;
+        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, alarmPendingIntent);
+
+        return notificationPendingIntent;
     }
 }
