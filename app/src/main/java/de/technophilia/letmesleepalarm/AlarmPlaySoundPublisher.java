@@ -12,11 +12,18 @@ public class AlarmPlaySoundPublisher extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        playAlarm(context);
+        showStopActivity(context);
+    }
+
+    private void showStopActivity(Context context) {
+        Intent intent = new Intent(context, StopActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    private void playAlarm(Context context) {
         AlarmRingtoneManager alarmRingtoneManager = AlarmRingtoneManager.getInstance(context);
         alarmRingtoneManager.playAlarm();
-
-        Intent intent1 = new Intent(context, StopActivity.class);
-        intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent1);
     }
 }

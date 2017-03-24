@@ -17,16 +17,26 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Intent alarmIntent = new Intent(context, AlarmPlaySoundPublisher.class);
-        PendingIntent alarmPendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), Settings.ALARM_ID, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        cancelAlarm(context);
+        cancelNotification(context);
 
+        Toast.makeText(context, "Alarm cancelled!", Toast.LENGTH_LONG).show();
+    }
+
+    private PendingIntent getAlarmPendingIntent(Context context) {
+        Intent alarmIntent = new Intent(context, AlarmPlaySoundPublisher.class);
+        return PendingIntent.getBroadcast(context.getApplicationContext(), Settings.ALARM_ID, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+    }
+
+    private void cancelAlarm(Context context) {
+        PendingIntent alarmPendingIntent = getAlarmPendingIntent(context);
         AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.cancel(alarmPendingIntent);
         alarmPendingIntent.cancel();
+    }
 
+    private void cancelNotification(Context context) {
         NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.cancel(Settings.NOTIFICATION_ID);
-
-        Toast.makeText(context, "Alarm cancelled!", Toast.LENGTH_LONG).show();
     }
 }

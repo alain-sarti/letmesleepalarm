@@ -22,27 +22,21 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
-    @BindView(R.id.btnAddAlarm)
-    Button btnAddAlarm;
-
     @BindView(R.id.etHours)
     EditText etHours;
 
     @BindView(R.id.etOffset)
     EditText etOffset;
 
-    private static long OFFSET = 1000 * 60 * 15;
-    private static long TIME = 1000 * 60 * 60 * 8;
-
     @OnClick(R.id.btnAddAlarm)
     public void addAlarm() {
-        long time = TIME;
-        long offset = OFFSET;
+        long time = 1000 * 60 * 60 * 8;
+        long offset = 1000 * 60 * 15;
         if(!TextUtils.isEmpty(etHours.getText().toString())) {
-            time = Long.parseLong(etHours.getText().toString()) * 1000 * 60 * 60; //1000 * 60 * 60
+            time = Long.parseLong(etHours.getText().toString()) * 1000 * 60 * 60;
         }
         if(!TextUtils.isEmpty(etOffset.getText().toString())) {
-            offset = Long.parseLong(etOffset.getText().toString()) * 1000 * 60; //1000 * 60
+            offset = Long.parseLong(etOffset.getText().toString()) * 1000 * 60;
         }
         scheduleNotification(offset, time);
     }
@@ -61,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(Settings.NOTIFICATION_ID, notification);
 
-        Toast.makeText(this, R.string.toast_alarm_set, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, this.getString(R.string.toast_alarm_set, DateFormat.format("hh:mm", getAlarmTime(delay, time))), Toast.LENGTH_LONG).show();
     }
 
     private Notification getNotification(String content, PendingIntent pendingIntent) {
