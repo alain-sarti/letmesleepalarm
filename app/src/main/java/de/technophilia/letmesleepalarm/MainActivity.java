@@ -6,12 +6,12 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -77,10 +77,17 @@ public class MainActivity extends AppCompatActivity {
         PendingIntent alarmPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), Settings.ALARM_ID, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         PendingIntent notificationPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        long futureInMillis = SystemClock.elapsedRealtime() + delay + time;
-        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, alarmPendingIntent);
+        setAlarm(SystemClock.elapsedRealtime() + delay + time, alarmPendingIntent);
 
         return notificationPendingIntent;
+    }
+
+    private void setAlarm(long futureInMillis, PendingIntent alarmPendingIntent) {
+        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        if(Build.VERSION.SDK_INT >= 23) {
+            alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, alarmPendingIntent);
+        } else {
+            alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, alarmPendingIntent);
+        }
     }
 }
