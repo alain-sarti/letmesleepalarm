@@ -1,5 +1,7 @@
 package de.technophilia.letmesleepalarm;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 
 import com.evernote.android.job.Job;
@@ -15,7 +17,8 @@ public class AlarmJob extends Job {
     @NonNull
     @Override
     protected Result onRunJob(Params params) {
-        //TODO: play Alarm
+        playAlarm();
+        showStopActivity();
         return Result.SUCCESS;
     }
 
@@ -24,5 +27,16 @@ public class AlarmJob extends Job {
                 .setExact(sleepTime)
                 .build()
                 .schedule();
+    }
+
+    private void showStopActivity() {
+        Intent intent = new Intent(getContext(), StopActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        getContext().startActivity(intent);
+    }
+
+    private void playAlarm() {
+        AlarmRingtoneManager alarmRingtoneManager = AlarmRingtoneManager.getInstance(getContext());
+        alarmRingtoneManager.playAlarm();
     }
 }

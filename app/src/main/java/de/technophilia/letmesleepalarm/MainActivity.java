@@ -30,15 +30,30 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnAddAlarm)
     public void addAlarm() {
+        scheduleNotification(getOffset(), getTime());
+    }
+
+    @OnClick(R.id.btnAddJob)
+    public void addJob() {
+        scheduleJob(getOffset(), getTime());
+    }
+
+    private long getTime() {
         long time = 1000 * 60 * 60 * 8;
-        long offset = 1000 * 60 * 15;
         if(!TextUtils.isEmpty(etHours.getText().toString())) {
             time = Long.parseLong(etHours.getText().toString()) * 1000 * 60 * 60;
         }
+
+        return time;
+    }
+
+    private long getOffset() {
+        long offset = 1000 * 60 * 15;
         if(!TextUtils.isEmpty(etOffset.getText().toString())) {
             offset = Long.parseLong(etOffset.getText().toString()) * 1000 * 60;
         }
-        scheduleNotification(offset, time);
+
+        return offset;
     }
 
     @Override
@@ -89,5 +104,9 @@ public class MainActivity extends AppCompatActivity {
         } else {
             alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, alarmPendingIntent);
         }
+    }
+
+    private void scheduleJob(long offset, long time) {
+        AlarmJob.scheduleJob(offset + time);
     }
 }
