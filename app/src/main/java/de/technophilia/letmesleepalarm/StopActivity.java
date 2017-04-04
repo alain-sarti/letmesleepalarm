@@ -9,6 +9,7 @@ import android.view.WindowManager;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.technophilia.letmesleepalarm.alarm.AlarmRingtoneManager;
 
 public class StopActivity extends AppCompatActivity {
 

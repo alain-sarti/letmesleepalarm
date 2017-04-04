@@ -1,4 +1,4 @@
-package de.technophilia.letmesleepalarm;
+package de.technophilia.letmesleepalarm.alarm;
 
 import android.content.Context;
 import android.media.AudioAttributes;

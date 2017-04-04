@@ -1,8 +1,10 @@
-package de.technophilia.letmesleepalarm;
+package de.technophilia.letmesleepalarm.alarm;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+
+import de.technophilia.letmesleepalarm.StopActivity;
 
 /**
  * Created by alainsarti on 31/12/2016.

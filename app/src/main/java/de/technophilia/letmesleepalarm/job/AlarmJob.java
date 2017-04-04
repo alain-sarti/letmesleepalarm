@@ -1,11 +1,13 @@
-package de.technophilia.letmesleepalarm;
+package de.technophilia.letmesleepalarm.job;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 
 import com.evernote.android.job.Job;
 import com.evernote.android.job.JobRequest;
+
+import de.technophilia.letmesleepalarm.alarm.AlarmRingtoneManager;
+import de.technophilia.letmesleepalarm.StopActivity;
 
 /**
  * Created by alainsarti on 29/03/2017.

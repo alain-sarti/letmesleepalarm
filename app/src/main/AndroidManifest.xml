@@ -18,8 +18,8 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".AlarmNotificationReceiver" />
-        <receiver android:name=".AlarmPlaySoundPublisher" />
+        <receiver android:name=".alarm.AlarmNotificationReceiver" />
+        <receiver android:name=".alarm.AlarmPlaySoundPublisher" />
 
         <activity android:name=".StopActivity"
             android:showOnLockScreen="true"/>

@@ -1,4 +1,4 @@
-package de.technophilia.letmesleepalarm;
+package de.technophilia.letmesleepalarm.util;
 
 /**
  * Created by alainsarti on 08/01/2017.

@@ -1,4 +1,4 @@
-package de.technophilia.letmesleepalarm;
+package de.technophilia.letmesleepalarm.alarm;
 
 import android.app.AlarmManager;
 import android.app.NotificationManager;
@@ -7,6 +7,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
+
+import de.technophilia.letmesleepalarm.util.Settings;
 
 /**
  * Created by alainsarti on 31/12/2016.

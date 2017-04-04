@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.evernote.android.job.JobManager;
 
+import de.technophilia.letmesleepalarm.job.AlarmJobCreator;
+
 /**
  * Created by alainsarti on 29/03/2017.
  */
