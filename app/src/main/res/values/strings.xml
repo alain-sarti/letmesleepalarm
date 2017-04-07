@@ -7,4 +7,5 @@
     <string name="hint_hours">hours to sleep (default 8)</string>
     <string name="hint_offset">minutes to fall asleep (default 15)</string>
     <string name="btn_add_job">Add Alarm (Job)</string>
+    <string name="title_activity_test">TestActivity</string>
 </resources>

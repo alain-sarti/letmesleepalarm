@@ -46,6 +46,12 @@ public class MainActivity extends AppCompatActivity {
         scheduleJob(calculateOffset(), calculateTime());
     }
 
+    @OnClick(R.id.btnTest)
+    public void openTestActivity() {
+        Intent intent = new Intent(this, TestActivity.class);
+        startActivity(intent);
+    }
+
     private long calculateTime() {
         long time = 1000 * 60 * 60 * 8;
         if(!TextUtils.isEmpty(etHours.getText().toString())) {
@@ -62,13 +68,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return offset;
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
     }
 
     private void scheduleNotification(long delay, long time) {
@@ -93,5 +92,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void scheduleJob(long offset, long time) {
         AlarmJob.scheduleJob(offset + time);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
     }
 }

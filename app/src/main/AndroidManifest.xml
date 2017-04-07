@@ -3,14 +3,13 @@
     package="de.technophilia.letmesleepalarm">
 
     <application
+        android:name=".LetmesleepAlarmApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".LetmesleepAlarmApplication">
-        <activity
-            android:name=".MainActivity">
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,8 +20,12 @@
         <receiver android:name=".alarm.AlarmNotificationReceiver" />
         <receiver android:name=".alarm.AlarmPlaySoundPublisher" />
 
-        <activity android:name=".StopActivity"
-            android:showOnLockScreen="true"/>
+        <activity
+            android:name=".StopActivity"
+            android:showOnLockScreen="true" />
+        <activity
+            android:name=".TestActivity"
+            android:label="@string/title_activity_test" />
     </application>
 
 </manifest>
