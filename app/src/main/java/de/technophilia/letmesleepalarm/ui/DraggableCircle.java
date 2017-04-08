@@ -32,8 +32,6 @@ public class DraggableCircle extends View implements View.OnTouchListener {
     }
 
     private void init() {
-        x = getWidth() / 2;
-        y = getHeight() / 2;
         paint = new Paint();
         paint.setAntiAlias(true);
         paint.setARGB(255, r, g, b);

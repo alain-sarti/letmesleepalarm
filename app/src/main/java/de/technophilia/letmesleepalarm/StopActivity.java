@@ -21,6 +21,14 @@ public class StopActivity extends AppCompatActivity {
         this.finish();
     }
 
+    @OnClick(R.id.ivStopAlarm)
+    public void stopAlarm2() {
+        AlarmRingtoneManager alarmRingtoneManager = AlarmRingtoneManager.getInstance(getApplicationContext());
+        alarmRingtoneManager.stopAlarm();
+
+        this.finish();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,16 +41,16 @@ public class StopActivity extends AppCompatActivity {
                 | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        int action = MotionEventCompat.getActionMasked(event);
-        switch (action) {
-            case (MotionEvent.ACTION_MOVE) :
-                Log.d("TOUCH EVENT", "Action was MOVE");
-                stopAlarm();
-                return true;
-            default:
-                return super.onTouchEvent(event);
-        }
-    }
+//    @Override
+//    public boolean onTouchEvent(MotionEvent event) {
+//        int action = MotionEventCompat.getActionMasked(event);
+//        switch (action) {
+//            case (MotionEvent.ACTION_MOVE) :
+//                Log.d("TOUCH EVENT", "Action was MOVE");
+//                stopAlarm();
+//                return true;
+//            default:
+//                return super.onTouchEvent(event);
+//        }
+//    }
 }
