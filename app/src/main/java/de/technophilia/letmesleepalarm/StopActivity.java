@@ -13,16 +13,8 @@ import de.technophilia.letmesleepalarm.alarm.AlarmRingtoneManager;
 
 public class StopActivity extends AppCompatActivity {
 
-    @OnClick(R.id.btnStopAlarm)
-    public void stopAlarm() {
-        AlarmRingtoneManager alarmRingtoneManager = AlarmRingtoneManager.getInstance(getApplicationContext());
-        alarmRingtoneManager.stopAlarm();
-
-        this.finish();
-    }
-
     @OnClick(R.id.ivStopAlarm)
-    public void stopAlarm2() {
+    public void stopAlarm() {
         AlarmRingtoneManager alarmRingtoneManager = AlarmRingtoneManager.getInstance(getApplicationContext());
         alarmRingtoneManager.stopAlarm();
 
@@ -40,17 +32,4 @@ public class StopActivity extends AppCompatActivity {
                 | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
                 | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
     }
-
-//    @Override
-//    public boolean onTouchEvent(MotionEvent event) {
-//        int action = MotionEventCompat.getActionMasked(event);
-//        switch (action) {
-//            case (MotionEvent.ACTION_MOVE) :
-//                Log.d("TOUCH EVENT", "Action was MOVE");
-//                stopAlarm();
-//                return true;
-//            default:
-//                return super.onTouchEvent(event);
-//        }
-//    }
 }

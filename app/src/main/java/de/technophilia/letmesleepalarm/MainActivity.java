@@ -34,19 +34,17 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.etOffset)
     EditText etOffset;
 
-    @OnClick(R.id.btnAddAlarm)
+    @OnClick(R.id.ivAddAlarm)
     public void addAlarm() {
         scheduleNotification(calculateOffset(), calculateTime());
         scheduleAlarm(calculateOffset(), calculateTime());
     }
 
-    @OnClick(R.id.btnAddJob)
     public void addJob() {
         scheduleNotification(calculateOffset(), calculateTime());
         scheduleJob(calculateOffset(), calculateTime());
     }
 
-    @OnClick(R.id.btnTest)
     public void openTestActivity() {
         Intent intent = new Intent(this, TestActivity.class);
         startActivity(intent);
