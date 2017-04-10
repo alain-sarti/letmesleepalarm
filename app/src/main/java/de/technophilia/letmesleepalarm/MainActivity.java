@@ -12,6 +12,7 @@ import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.technophilia.letmesleepalarm.alarm.AlarmNotificationReceiver;
 import de.technophilia.letmesleepalarm.alarm.AlarmPlaySoundPublisher;
+import de.technophilia.letmesleepalarm.alarm.AlarmRingtoneManager;
 import de.technophilia.letmesleepalarm.job.AlarmJob;
 import de.technophilia.letmesleepalarm.util.IntentFactory;
 import de.technophilia.letmesleepalarm.util.NotificationFactory;
@@ -35,7 +37,11 @@ public class MainActivity extends AppCompatActivity {
     EditText etOffset;
 
     @OnClick(R.id.ivAddAlarm)
-    public void addAlarm() {
+    public void addOrExtendAlarm() {
+        AlarmRingtoneManager alarmRingtoneManager = AlarmRingtoneManager.getInstance(getApplicationContext());
+        if (alarmRingtoneManager.checkIfAlarmIsPending()) {
+            //TODO: check if anything should happen here?!?
+        }
         scheduleNotification(calculateOffset(), calculateTime());
         scheduleAlarm(calculateOffset(), calculateTime());
     }

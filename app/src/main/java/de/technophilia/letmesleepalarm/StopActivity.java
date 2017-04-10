@@ -9,6 +9,7 @@ import android.view.WindowManager;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.technophilia.letmesleepalarm.alarm.AlarmNotificationManager;
 import de.technophilia.letmesleepalarm.alarm.AlarmRingtoneManager;
 
 public class StopActivity extends AppCompatActivity {
@@ -17,6 +18,7 @@ public class StopActivity extends AppCompatActivity {
     public void stopAlarm() {
         AlarmRingtoneManager alarmRingtoneManager = AlarmRingtoneManager.getInstance(getApplicationContext());
         alarmRingtoneManager.stopAlarm();
+        AlarmNotificationManager.cancelNotification(this);
 
         this.finish();
     }

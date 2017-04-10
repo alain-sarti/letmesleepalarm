@@ -1,12 +1,16 @@
 package de.technophilia.letmesleepalarm.alarm;
 
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+
+import de.technophilia.letmesleepalarm.util.Settings;
 
 /**
  * Created by alainsarti on 01/01/2017.
@@ -47,6 +51,10 @@ public class AlarmRingtoneManager {
         if(instance == null)
             instance = new AlarmRingtoneManager(context);
         return instance;
+    }
+
+    public boolean checkIfAlarmIsPending() {
+        return PendingIntent.getBroadcast(context, Settings.ALARM_ID, new Intent(context, AlarmPlaySoundPublisher.class), PendingIntent.FLAG_NO_CREATE) != null;
     }
 
     private void setAlarmType() {
