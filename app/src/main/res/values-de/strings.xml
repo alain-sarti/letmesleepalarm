@@ -8,4 +8,5 @@
     <string name="toast_alarm_set">Der Wecker ist gestellt, gute Nacht und schlaf gut! (%1$s)</string>
     <string name="notification_alarm_time">Geplanter Alarm um: %s. Klicke auf die Erinnerung, um den Alarm zu löschen.</string>
     <string name="btn_add_job">Alarm anlegen (Job)</string>
+    <string name="title_activity_settings">Einstellungen</string>
 </resources>
