@@ -20,4 +20,13 @@
         app:srcCompat="@drawable/ic_alarm_off_black_100dp"
         tools:ignore="Stop Alarm"/>
 
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/ivSnoozeAlarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        app:srcCompat="@drawable/ic_snooze_black_100dp"
+        tools:ignore="Snooze Alarm"/>
+
 </RelativeLayout>

@@ -23,6 +23,11 @@ public class StopActivity extends AppCompatActivity {
         this.finish();
     }
 
+    @OnClick(R.id.ivSnoozeAlarm)
+    public void snoozeAlarm() {
+        //TODO: implement!
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

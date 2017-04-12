@@ -23,6 +23,7 @@ import java.util.Date;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.technophilia.letmesleepalarm.alarm.AlarmNotificationManager;
 import de.technophilia.letmesleepalarm.alarm.AlarmNotificationReceiver;
 import de.technophilia.letmesleepalarm.alarm.AlarmPlaySoundPublisher;
 import de.technophilia.letmesleepalarm.alarm.AlarmRingtoneManager;
@@ -46,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
         }
         scheduleNotification(calculateOffset(), calculateTime());
         scheduleAlarm(calculateOffset(), calculateTime());
+    }
+
+    @OnClick(R.id.ivCancelAlarm)
+    public void deleteAlarm() {
+        cancelAlarm();
+        AlarmNotificationManager.cancelNotification(this);
     }
 
     public void addJob() {
@@ -90,6 +97,13 @@ public class MainActivity extends AppCompatActivity {
         } else {
             alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + delay + time, IntentFactory.prepareAlarmIntent(this));
         }
+    }
+
+    private void cancelAlarm() {
+        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        alarmManager.cancel(IntentFactory.prepareAlarmIntent(this));
+
+        Toast.makeText(this, R.string.toast_alarm_cancelled, Toast.LENGTH_LONG).show();
     }
 
     private Date getAlarmTime(long delay, long time) {
