@@ -10,4 +10,10 @@
     <string name="btn_add_job">Alarm anlegen (Job)</string>
     <string name="title_activity_settings">Einstellungen</string>
     <string name="toast_alarm_cancelled">Der gestellte Wecker ist aus!</string>
+    <string name="pref_default_default_hours">8</string>
+    <string name="pref_default_default_minutes">15</string>
+    <string name="pref_header_general">Allgemein</string>
+    <string name="pref_header_notifications">Wecker</string>
+    <string name="pref_title_default_hours">Standard Stunden zu schlafen</string>
+    <string name="pref_title_default_minutes">Standard Minuten bis man einschläft</string>
 </resources>

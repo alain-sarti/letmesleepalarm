@@ -6,15 +6,19 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
+import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -66,7 +70,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private long calculateTime() {
-        long time = 1000 * 60 * 60 * 8;
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        int default_hours = Integer.parseInt(sharedPref.getString("default_hours", "8"));
+        long time = 1000 * 60 * 60 * default_hours;
         if(!TextUtils.isEmpty(etHours.getText().toString())) {
             time = Long.parseLong(etHours.getText().toString()) * 1000 * 60 * 60;
         }
@@ -75,7 +81,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private long calculateOffset() {
-        long offset = 1000 * 60 * 15;
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        int default_minutes = Integer.parseInt(sharedPref.getString("default_minutes", "15"));
+        long offset = 1000 * 60 * default_minutes;
         if(!TextUtils.isEmpty(etOffset.getText().toString())) {
             offset = Long.parseLong(etOffset.getText().toString()) * 1000 * 60;
         }
@@ -112,6 +120,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void scheduleJob(long offset, long time) {
         AlarmJob.scheduleJob(offset + time);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.miSettings:
+                Intent intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return true;
     }
 
     @Override
