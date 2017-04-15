@@ -16,4 +16,6 @@
     <string name="pref_header_notifications">Wecker</string>
     <string name="pref_title_default_hours">Standard Stunden zu schlafen</string>
     <string name="pref_title_default_minutes">Standard Minuten bis man einschläft</string>
+    <string name="pref_default_snooze">15</string>
+    <string name="pref_title_snooze">Schlummerzeit</string>
 </resources>

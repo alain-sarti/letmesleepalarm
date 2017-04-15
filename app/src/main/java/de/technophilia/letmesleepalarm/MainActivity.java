@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.annotation.IntegerRes;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -49,8 +51,10 @@ public class MainActivity extends AppCompatActivity {
         if (alarmRingtoneManager.checkIfAlarmIsPending()) {
             //TODO: check if anything should happen here?!?
         }
-        scheduleNotification(calculateOffset(), calculateTime());
-        scheduleAlarm(calculateOffset(), calculateTime());
+        long offset = calculateOffset();
+        long time = calculateTime();
+        scheduleNotification(offset, time);
+        scheduleAlarm(offset, time);
     }
 
     @OnClick(R.id.ivCancelAlarm)
@@ -60,8 +64,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addJob() {
-        scheduleNotification(calculateOffset(), calculateTime());
-        scheduleJob(calculateOffset(), calculateTime());
+        long offset = calculateOffset();
+        long time = calculateTime();
+        scheduleNotification(offset, time);
+        scheduleJob(offset, time);
     }
 
     public void openTestActivity() {
@@ -127,6 +133,8 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.miSettings:
                 Intent intent = new Intent(this, SettingsActivity.class);
+                intent.putExtra( AppCompatPreferenceActivity.EXTRA_SHOW_FRAGMENT, SettingsActivity.GeneralPreferenceFragment.class.getName() );
+                intent.putExtra( AppCompatPreferenceActivity.EXTRA_NO_HEADERS, true );
                 startActivity(intent);
                 break;
         }
@@ -136,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
         return true;
     }
 
