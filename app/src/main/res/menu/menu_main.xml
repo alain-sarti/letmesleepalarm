@@ -5,7 +5,6 @@
         android:id="@+id/miSettings"
         app:srcCompat="@drawable/ic_settings_black_24dp"
         android:icon="@drawable/ic_settings_black_24dp"
-        android:tint="@android:color/white"
         app:showAsAction="always"
         android:title="@string/title_activity_settings"
         />

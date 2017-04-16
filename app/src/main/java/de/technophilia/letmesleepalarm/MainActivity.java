@@ -3,22 +3,21 @@ package de.technophilia.letmesleepalarm;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
-import android.support.annotation.IntegerRes;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -30,8 +29,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.technophilia.letmesleepalarm.alarm.AlarmNotificationManager;
-import de.technophilia.letmesleepalarm.alarm.AlarmNotificationReceiver;
-import de.technophilia.letmesleepalarm.alarm.AlarmPlaySoundPublisher;
 import de.technophilia.letmesleepalarm.alarm.AlarmRingtoneManager;
 import de.technophilia.letmesleepalarm.job.AlarmJob;
 import de.technophilia.letmesleepalarm.util.IntentFactory;
@@ -41,9 +38,12 @@ import de.technophilia.letmesleepalarm.util.Settings;
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.etHours)
     EditText etHours;
-
     @BindView(R.id.etOffset)
     EditText etOffset;
+    @BindView(R.id.tilHours)
+    TextInputLayout tilHours;
+    @BindView(R.id.tilOffset)
+    TextInputLayout tilOffset;
 
     @OnClick(R.id.ivAddAlarm)
     public void addOrExtendAlarm() {
@@ -145,6 +145,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
+        Drawable drawable = DrawableCompat.wrap(menu.findItem(R.id.miSettings).getIcon());
+        DrawableCompat.setTint(drawable, ContextCompat.getColor(this, R.color.white));
+        menu.findItem(R.id.miSettings).setIcon(drawable);
+
         return true;
     }
 
@@ -156,5 +160,8 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.tbMain);
         setSupportActionBar(toolbar);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        tilHours.setHint(this.getString(R.string.hint_hours, sharedPref.getString("default_hours", "8")));
+        tilOffset.setHint(this.getString(R.string.hint_offset, sharedPref.getString("default_minutes", "15")));
     }
 }

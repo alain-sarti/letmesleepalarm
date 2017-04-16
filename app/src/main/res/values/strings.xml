@@ -4,8 +4,8 @@
     <string name="btn_stop_alarm">Stop Alarm</string>
     <string name="toast_alarm_set">The alarm is set, good night and sleep tight! (%1$s)</string>
     <string name="notification_alarm_time">scheduled wakeup at: %s. Click the notification to cancel.</string>
-    <string name="hint_hours">hours to sleep (default 8)</string>
-    <string name="hint_offset">minutes to fall asleep (default 15)</string>
+    <string name="hint_hours">hours to sleep (default %1$s)</string>
+    <string name="hint_offset">minutes to fall asleep (default %1$s)</string>
     <string name="btn_add_job">Add Alarm (Job)</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="title_activity_settings">Settings</string>

@@ -26,6 +26,7 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
+        android:focusableInTouchMode="true"
         >
         <android.support.design.widget.TextInputLayout
             android:id="@+id/tilHours"
@@ -37,11 +38,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:hint="@string/hint_hours"
                 />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilOffset"
             android:layout_below="@id/tilHours"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -50,7 +51,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:hint="@string/hint_offset"
                 />
         </android.support.design.widget.TextInputLayout>
     </RelativeLayout>
