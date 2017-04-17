@@ -70,11 +70,6 @@ public class MainActivity extends AppCompatActivity {
         scheduleJob(offset, time);
     }
 
-    public void openTestActivity() {
-        Intent intent = new Intent(this, TestActivity.class);
-        startActivity(intent);
-    }
-
     private long calculateTime() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         int default_hours = Integer.parseInt(sharedPref.getString("default_hours", "8"));

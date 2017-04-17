@@ -24,12 +24,6 @@
     <!-- settings for Notifications -->
     <string name="pref_header_notifications">Alarm</string>
 
-    <string name="pref_title_new_message_notifications">New message notifications</string>
-
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-
-    <string name="pref_title_vibrate">Vibrate</string>
     <string name="toast_alarm_cancelled">The set alarm is cancelled!</string>
     <string name="pref_default_snooze">15</string>
     <string name="pref_title_snooze">Snooze time</string>
