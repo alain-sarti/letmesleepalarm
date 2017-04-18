@@ -15,7 +15,6 @@ import de.technophilia.letmesleepalarm.util.Settings;
 /**
  * Created by alainsarti on 01/01/2017.
  */
-
 public class AlarmRingtoneManager {
     private static AlarmRingtoneManager instance = null;
     private Context context;
