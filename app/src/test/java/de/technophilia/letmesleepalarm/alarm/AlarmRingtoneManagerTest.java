@@ -1,5 +1,6 @@
 package de.technophilia.letmesleepalarm.alarm;
 
+import android.app.PendingIntent;
 import android.content.Context;
 
 import org.junit.Test;
@@ -7,8 +8,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
@@ -19,26 +18,8 @@ import static org.junit.Assert.assertThat;
 public class AlarmRingtoneManagerTest {
     @Mock
     Context mockContext;
-
-    @Test
-    public void getAlarmUri() throws Exception {
-
-    }
-
-    @Test
-    public void getAlarmRingtone() throws Exception {
-
-    }
-
-    @Test
-    public void playAlarm() throws Exception {
-
-    }
-
-    @Test
-    public void stopAlarm() throws Exception {
-
-    }
+    @Mock
+    PendingIntent pendingIntent;
 
     @Test
     public void getInstance() throws Exception {
@@ -49,6 +30,7 @@ public class AlarmRingtoneManagerTest {
     @Test
     public void checkIfAlarmIsPending() throws Exception {
 //        AlarmRingtoneManager manager = new AlarmRingtoneManager(mockContext);
+//        when(PendingIntent.getBroadcast(mockContext, 0, new Intent(mockContext, AlarmPlaySoundPublisher.class), PendingIntent.FLAG_NO_CREATE)).thenReturn(null);
 //        assertThat(manager.checkIfAlarmIsPending(), is(false));
     }
 
