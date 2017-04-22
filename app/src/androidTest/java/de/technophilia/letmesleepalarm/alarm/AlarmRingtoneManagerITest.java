@@ -1,5 +1,6 @@
 package de.technophilia.letmesleepalarm.alarm;
 
+import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.SmallTest;
@@ -39,5 +40,13 @@ public class AlarmRingtoneManagerITest {
     @Test
     public void checkIfAlarmIsPending() {
         assertThat(ringtoneManager.checkIfAlarmIsPending(), is(false));
+    }
+
+    @Test
+    public void playAlarm() {
+        // unsure why this doesn't work
+        Ringtone alarmRingtone = ringtoneManager.getAlarmRingtone();
+        ringtoneManager.playAlarm();
+        assertThat(alarmRingtone.isPlaying(), is(true));
     }
 }
